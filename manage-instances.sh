@@ -76,7 +76,7 @@ open_browsers() {
         for container_name in $(get_instance_names); do
             if instance_num=$(extract_instance_number "$container_name"); then
                 novnc_port=$((6080 + instance_num))
-                url="http://localhost:${novnc_port}"
+                url="http://localhost:${novnc_port}?autoconnect=true"
                 echo "Opening $container_name at $url"
                 $OPEN_CMD "$url" 2>/dev/null &
                 sleep 2
@@ -87,7 +87,7 @@ open_browsers() {
         for instance_num in "${INSTANCES[@]}"; do
             if container_name=$(find_container_name "$instance_num"); then
                 novnc_port=$((6080 + instance_num))
-                url="http://localhost:${novnc_port}"
+                url="http://localhost:${novnc_port}?autoconnect=true"
                 echo "Opening $container_name at $url"
                 $OPEN_CMD "$url"
             else
@@ -142,7 +142,7 @@ show_status() {
             websocket_port=$((4454 + instance_num))
             vnc_port=$((5900 + instance_num))
             echo "Instance $instance_num ($container_name):"
-            echo "  NoVNC: http://localhost:$novnc_port"
+            echo "  NoVNC: http://localhost:$novnc_port?autoconnect=true"
             echo "  WebSocket: ws://localhost:$websocket_port"
             echo "  VNC: localhost:$vnc_port"
             echo ""
@@ -182,7 +182,10 @@ start_instances() {
 stop_instances() {
     if [ ${#INSTANCES[@]} -eq 0 ]; then
         echo "Stopping all OBS instances..."
-        docker-compose down
+        # First stop all containers
+        docker-compose stop
+        # Then remove containers, networks, and volumes
+        docker-compose down --remove-orphans
     else
         echo "Stopping instances: ${INSTANCES[*]}"
         for instance_num in "${INSTANCES[@]}"; do

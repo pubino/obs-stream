@@ -177,3 +177,13 @@ Each instance gets automatically assigned unique ports:
 - **Instance 1**: VNC: 5901, NoVNC: 6081, WebSocket: 4455
 - **Instance 2**: VNC: 5902, NoVNC: 6082, WebSocket: 4456
 - **Instance N**: VNC: 5900+N, NoVNC: 6080+N, WebSocket: 4454+N
+
+## Accessing OBS Instances
+
+Once your instances are running, you can access them through:
+
+- **NoVNC Web Interface**: `http://localhost:6081?autoconnect=true` (automatically connects)
+- **Direct VNC**: `localhost:5901` (requires VNC client)
+- **OBS WebSocket**: `ws://localhost:4455` (for external automation)
+
+> **Auto-Connect Feature**: The NoVNC URLs include `?autoconnect=true` which automatically establishes the connection without requiring you to click the connect button.
