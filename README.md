@@ -16,6 +16,8 @@ cp .env.example .env
 # Edit .env with your preferred settings
 ```
 
+> **Security Note**: The `.env` file is automatically excluded from version control via `.gitignore` to prevent accidentally committing sensitive configuration or passwords.
+
 Available variables:
 - `VNC_PORT`: VNC port for the instance (default: 5901)
 - `NOVNC_PORT`: NoVNC web port for the instance (default: 6081)
