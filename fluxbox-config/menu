@@ -1,0 +1,12 @@
+[begin] (fluxbox)
+  [exec] (OBS Studio) {obs --disable-shutdown-check --multiinstance} </usr/share/icons/hicolor/48x48/apps/obs.png>
+  [exec] (Terminal) {xterm} </usr/share/icons/hicolor/48x48/apps/xterm.png>
+  [exec] (Firefox) {firefox} </usr/share/icons/hicolor/48x48/apps/firefox.png>
+  [submenu] (System)
+    [exec] (Lock Screen) {xlock} </usr/share/icons/hicolor/48x48/apps/xlock.png>
+    [exec] (Reconfigure) {fluxbox-remote reconfigure}
+    [exec] (Restart) {fluxbox-remote restart}
+    [separator]
+    [exec] (Exit) {fluxbox-remote exit}
+  [end]
+[end]

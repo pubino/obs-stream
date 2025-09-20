@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  obs-instance-1:
+    build: .
+    ports:
+      - "5901:5901"
+      - "6081:6080"
+      - "4455:4455"
+    environment:
+      - VNC_PORT=5901
+      - NOVNC_PORT=6081
+      - OBS_WS_PORT=4455
+      - OBS_BASE_WIDTH=${OBS_BASE_WIDTH:-1920}
+      - OBS_BASE_HEIGHT=${OBS_BASE_HEIGHT:-1080}
+      - OBS_OUTPUT_WIDTH=${OBS_OUTPUT_WIDTH:-1920}
+      - OBS_OUTPUT_HEIGHT=${OBS_OUTPUT_HEIGHT:-1080}
+      - OBS_SCALE_TYPE=${OBS_SCALE_TYPE:-bicubic}
+      - OBS_COLOR_FORMAT=${OBS_COLOR_FORMAT:-NV12}
+      - OBS_COLOR_SPACE=${OBS_COLOR_SPACE:-709}
+      - OBS_COLOR_RANGE=${OBS_COLOR_RANGE:-Partial}
+      - OBS_FPS_COMMON=${OBS_FPS_COMMON:-30}
+      - OBS_FPS_INT=${OBS_FPS_INT:-30}
+    volumes:
+      - obs-data-1:/root/.config/obs-studio
+    restart: unless-stopped
+
+  obs-instance-2:
+    build: .
+    ports:
+      - "5902:5902"
+      - "6082:6080"
+      - "4456:4455"
+    environment:
+      - VNC_PORT=5902
+      - NOVNC_PORT=6082
+      - OBS_WS_PORT=4456
+      - OBS_BASE_WIDTH=${OBS_BASE_WIDTH:-1920}
+      - OBS_BASE_HEIGHT=${OBS_BASE_HEIGHT:-1080}
+      - OBS_OUTPUT_WIDTH=${OBS_OUTPUT_WIDTH:-1920}
+      - OBS_OUTPUT_HEIGHT=${OBS_OUTPUT_HEIGHT:-1080}
+      - OBS_SCALE_TYPE=${OBS_SCALE_TYPE:-bicubic}
+      - OBS_COLOR_FORMAT=${OBS_COLOR_FORMAT:-NV12}
+      - OBS_COLOR_SPACE=${OBS_COLOR_SPACE:-709}
+      - OBS_COLOR_RANGE=${OBS_COLOR_RANGE:-Partial}
+      - OBS_FPS_COMMON=${OBS_FPS_COMMON:-30}
+      - OBS_FPS_INT=${OBS_FPS_INT:-30}
+    volumes:
+      - obs-data-2:/root/.config/obs-studio
+    restart: unless-stopped
+
+  obs-instance-3:
+    build: .
+    ports:
+      - "5903:5903"
+      - "6083:6080"
+      - "4457:4455"
+    environment:
+      - VNC_PORT=5903
+      - NOVNC_PORT=6083
+      - OBS_WS_PORT=4457
+      - OBS_BASE_WIDTH=${OBS_BASE_WIDTH:-1920}
+      - OBS_BASE_HEIGHT=${OBS_BASE_HEIGHT:-1080}
+      - OBS_OUTPUT_WIDTH=${OBS_OUTPUT_WIDTH:-1920}
+      - OBS_OUTPUT_HEIGHT=${OBS_OUTPUT_HEIGHT:-1080}
+      - OBS_SCALE_TYPE=${OBS_SCALE_TYPE:-bicubic}
+      - OBS_COLOR_FORMAT=${OBS_COLOR_FORMAT:-NV12}
+      - OBS_COLOR_SPACE=${OBS_COLOR_SPACE:-709}
+      - OBS_COLOR_RANGE=${OBS_COLOR_RANGE:-Partial}
+      - OBS_FPS_COMMON=${OBS_FPS_COMMON:-30}
+      - OBS_FPS_INT=${OBS_FPS_INT:-30}
+    volumes:
+      - obs-data-3:/root/.config/obs-studio
+    restart: unless-stopped
+
+
+volumes:
+  obs-data-1:
+  obs-data-2:
+  obs-data-3:
